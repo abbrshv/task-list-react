@@ -9,6 +9,7 @@ import {
   incrementIfOdd,
   selectCount,
 } from "./counterSlice"
+// @ts-ignore
 import styles from "./Counter.module.css"
 
 export function Counter() {
