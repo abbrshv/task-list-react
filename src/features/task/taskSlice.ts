@@ -6,9 +6,9 @@ export interface Task {
   name: string
   category: "task" | "random thought" | "idea"
   content: string
+  createdDate: string
   isArchived?: boolean
-  dates?: RegExpMatchArray | null
-  createdDate?: number
+  dates?: string | null
   id?: string
 }
 
@@ -26,7 +26,8 @@ export const taskSlice = createSlice({
       prepare: (task: Task) => {
         const id = uuidv4()
         const isArchived = false
-        const dates = task.content.match(dateRegex)
+        const datesArray = task.content.match(dateRegex)
+        const dates = datesArray ? datesArray.join(", ") : null
 
         return { payload: { ...task, id, isArchived, dates } }
       },
@@ -37,7 +38,8 @@ export const taskSlice = createSlice({
           task.id === action.payload.id ? { ...task, ...action.payload } : task,
         ),
       prepare: (task: Task) => {
-        const dates = task.content.match(dateRegex)
+        const datesArray = task.content.match(dateRegex)
+        const dates = datesArray ? datesArray.join(", ") : null
 
         return { payload: { ...task, dates } }
       },
