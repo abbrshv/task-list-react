@@ -1,6 +1,12 @@
 import { Task } from "../task/taskSlice"
 
-export function Table({ headers, data }: { headers: string[]; data: Task[] }) {
+export default function Table({
+  headers,
+  data,
+}: {
+  headers: string[]
+  data: Task[]
+}) {
   const transformCamelCase = (text: string) => {
     const result = text.replace(/([A-Z])/g, " $1")
     return result.charAt(0).toUpperCase() + result.slice(1)
@@ -16,9 +22,12 @@ export function Table({ headers, data }: { headers: string[]; data: Task[] }) {
       {data.map((item) => {
         return (
           <tr key={item.id}>
-            {Object.entries(item).map((entry) =>
-              headers.includes(entry[0]) ? <td>{entry[1]}</td> : null,
-            )}
+            {headers.map((headerName) => {
+              const key = headerName as keyof typeof item
+              return Object.keys(item).includes(key) ? (
+                <td>{item[key]}</td>
+              ) : null
+            })}
           </tr>
         )
       })}
