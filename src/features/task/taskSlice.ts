@@ -6,7 +6,7 @@ export interface Task {
   name: string
   category: "task" | "random thought" | "idea"
   content: string
-  createdDate: string
+  createdDate?: string
   isArchived?: boolean
   dates?: string | null
   id?: string
@@ -53,6 +53,6 @@ export const { createTask, updateTask, deleteTask } = taskSlice.actions
 
 export const selectTasks = (state: RootState) => state.tasks
 export const selectTaskById = (id: string) => (state: RootState) =>
-  state.tasks.filter((task: Task) => task.id === id)
+  state.tasks.filter((task: Task) => task.id === id)[0]
 
 export default taskSlice.reducer
