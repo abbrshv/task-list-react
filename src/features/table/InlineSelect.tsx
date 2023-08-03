@@ -16,7 +16,7 @@ export default function InlineSelect({
     <select defaultValue={value} onBlur={onChange}>
       {options.map((option) => (
         <option key={option} value={option}>
-          {option.charAt(0).toUpperCase() + option.slice(1)}
+          {option}
         </option>
       ))}
     </select>
