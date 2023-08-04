@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 
-export default function InlineEdit({
-  value,
-  setValue,
-}: {
-  value: any
+interface InlineEditProps {
+  value: string
   setValue: Function
-}) {
+}
+
+export default function InlineEdit({ value, setValue }: InlineEditProps) {
   const [editingValue, setEditingValue] = useState(value)
 
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
