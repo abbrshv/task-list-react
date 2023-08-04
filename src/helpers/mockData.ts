@@ -4,13 +4,17 @@ import { v4 as uuidv4 } from "uuid"
 const dateRegex =
   /(0?[1-9]|[12][0-9]|3[01])(\/|-)(0?[1-9]|1[1,2])(\/|-)(19|20)\d{2}/g
 
+const formatDate = (date: Date) =>
+  `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
+
 const prepareTask = (task: Task) => {
   const id = uuidv4()
   const isArchived = false
+  const createdDate = formatDate(new Date())
   const datesArray = task.content.match(dateRegex)
   const dates = datesArray ? datesArray.join(", ") : null
 
-  return { ...task, id, isArchived, dates }
+  return { ...task, createdDate, id, isArchived, dates }
 }
 
 const tasks: Task[] = [
