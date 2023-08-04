@@ -43,7 +43,7 @@ function Stats({ statObjects }: { statObjects: StatObject[] }) {
 
   return (
     <div className={"stats--container"}>
-      <Collapsible>
+      <Collapsible name={"Statistics"}>
         <Table fields={fields} data={statObjectsWithID} taskButtons={false} />
       </Collapsible>
     </div>
