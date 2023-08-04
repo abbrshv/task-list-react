@@ -1,23 +1,30 @@
-import { PropsWithChildren } from "react"
+import React, { PropsWithChildren } from "react"
+
+interface ModalProps {
+  isModalShown: boolean
+  setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 function Modal({
   isModalShown,
   setIsModalShown,
   children,
-}: PropsWithChildren<any>) {
+}: PropsWithChildren<ModalProps>) {
+  if (!isModalShown) {
+    return null
+  }
+
   return (
-    isModalShown && (
-      <div className={"modal-layer"}>
-        <div className={"modal-root"}>
-          <div className={"modal-header"}>
-            <div className={"close-btn"} onClick={() => setIsModalShown(false)}>
-              ×
-            </div>
+    <div className={"modal-layer"}>
+      <div className={"modal-root"}>
+        <div className={"modal-header"}>
+          <div className={"close-btn"} onClick={() => setIsModalShown(false)}>
+            ×
           </div>
-          {children}
         </div>
+        {children}
       </div>
-    )
+    </div>
   )
 }
 
