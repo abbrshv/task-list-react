@@ -14,9 +14,7 @@ function TableCell({ isEditable, fieldName, item, updateTask }: any) {
   const childProps = {
     value: item[fieldName],
     setValue: inlineTaskUpdate,
-    options: categories.map(
-      (category) => category.charAt(0).toUpperCase() + category.slice(1),
-    ),
+    options: categories.map((category) => category),
   }
 
   if (!isEditable) {
