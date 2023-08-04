@@ -32,12 +32,12 @@ function CreateTaskForm({ createTask }: any) {
     <div className={"create-task-form"}>
       <button
         style={{
-          backgroundColor: isFormShown ? "grey" : "",
+          backgroundColor: isFormShown ? "indianred" : "",
         }}
         className={"btn-create"}
-        onClick={() => setIsFormShown(true)}
+        onClick={() => setIsFormShown(!isFormShown)}
       >
-        +
+        {isFormShown ? "-" : "+"}
       </button>
       {isFormShown && (
         <>
