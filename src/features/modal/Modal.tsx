@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react"
 
 interface ModalProps {
   isModalShown: boolean
-  setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>
+  setIsModalShown: Function
 }
 
 function Modal({
