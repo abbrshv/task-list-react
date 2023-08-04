@@ -1,0 +1,32 @@
+.task-active--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-task-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-create, .btn-confirm-create {
+    color: ghostwhite;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 70%;
+    font-size: 1.75rem;
+}
+
+
+.btn-create {
+    background-color: cornflowerblue;
+    margin: 15px 0 15px auto;
+}
+
+.btn-confirm-create {
+    background-color: darkolivegreen;
+    margin: 15px auto;
+}
+
+.btn-create:hover {
+    background-color: dodgerblue;
+}
