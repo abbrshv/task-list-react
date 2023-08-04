@@ -43,10 +43,12 @@ function CreateTaskForm({ createTask }: any) {
         <>
           <table>
             <thead>
-              <th>Name</th>
-              <th>Created Date</th>
-              <th>Category</th>
-              <th>Content</th>
+              <tr>
+                <th>Name</th>
+                <th>Created Date</th>
+                <th>Category</th>
+                <th>Content</th>
+              </tr>
             </thead>
             <tbody>
               <tr>
