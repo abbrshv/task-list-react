@@ -8,10 +8,6 @@ function CreateTaskForm({ createTask }: any) {
   const formatDate = (date: Date) =>
     `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
 
-  const categoryOptions = categories.map(
-    (category) => category.charAt(0).toUpperCase() + category.slice(1),
-  )
-
   const initialTask: Task = {
     name: "",
     category: "task" as (typeof categories)[number],
@@ -70,7 +66,7 @@ function CreateTaskForm({ createTask }: any) {
                         category: category,
                       })
                     }
-                    options={categoryOptions}
+                    options={[...categories]}
                   />
                 </td>
                 <td>
