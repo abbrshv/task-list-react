@@ -30,17 +30,17 @@ function Tasks({
   const taskFields: EditableFields = Object.fromEntries(taskFieldsArr)
 
   return (
-    <div className={"task--container"}>
+    <>
       <div className={"task-active--container"}>
         <Table fields={taskFields} data={activeTasks} taskButtons={true} />
         <CreateTaskForm />
       </div>
-      <div className={"task-archive--container"}>
-        <Collapsible name={"Archive"}>
+      <Collapsible name={"Archive"}>
+        <div className={"task-archive--container"}>
           <Table fields={taskFields} data={archivedTasks} taskButtons={true} />
-        </Collapsible>
-      </div>
-    </div>
+        </div>
+      </Collapsible>
+    </>
   )
 }
 
