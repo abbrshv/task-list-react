@@ -1,9 +1,22 @@
 import { connect } from "react-redux"
-import { updateTask, categories } from "../task/taskSlice"
+import { updateTask, categories, Task } from "../task/taskSlice"
+import { StatObject } from "../stats/Stats"
 import InlineEdit from "./InlineEdit"
 import InlineSelect from "./InlineSelect"
 
-function TableCell({ isEditable, fieldName, item, updateTask }: any) {
+interface TableCellProps {
+  isEditable: boolean
+  fieldName: keyof (Task | StatObject)
+  item: Task | StatObject
+  updateTask: Function
+}
+
+function TableCell({
+  isEditable,
+  fieldName,
+  item,
+  updateTask,
+}: TableCellProps) {
   const inlineTaskUpdate = (value: any) => {
     const updatedData = {
       [fieldName]: value,
@@ -12,18 +25,16 @@ function TableCell({ isEditable, fieldName, item, updateTask }: any) {
   }
 
   const childProps = {
-    value: item[fieldName],
+    value: item[fieldName] || "",
     setValue: inlineTaskUpdate,
-    options: categories.map(
-      (category) => category.charAt(0).toUpperCase() + category.slice(1),
-    ),
+    options: categories.map((category) => category),
   }
 
   if (!isEditable) {
     return <>{item[fieldName]}</>
   }
 
-  if (fieldName === "category") {
+  if (fieldName === ("category" as keyof Task)) {
     return <InlineSelect {...childProps} />
   }
 

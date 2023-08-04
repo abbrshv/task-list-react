@@ -4,13 +4,13 @@ import { createTask, Task, categories } from "./taskSlice"
 import InlineEdit from "../table/InlineEdit"
 import InlineSelect from "../table/InlineSelect"
 
-function CreateTaskForm({ createTask }: any) {
+interface CreateTaskFormProps {
+  createTask: Function
+}
+
+function CreateTaskForm({ createTask }: CreateTaskFormProps) {
   const formatDate = (date: Date) =>
     `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
-
-  const categoryOptions = categories.map(
-    (category) => category.charAt(0).toUpperCase() + category.slice(1),
-  )
 
   const initialTask: Task = {
     name: "",
@@ -20,7 +20,7 @@ function CreateTaskForm({ createTask }: any) {
   }
 
   const [isFormShown, setIsFormShown] = useState(false)
-  const [newTask, setNewTask] = useState(initialTask)
+  const [newTask, setNewTask] = useState<Task>(initialTask)
 
   const onSubmit = () => {
     if (Object.values(newTask).every((val) => val)) createTask(newTask)
@@ -70,7 +70,7 @@ function CreateTaskForm({ createTask }: any) {
                         category: category,
                       })
                     }
-                    options={categoryOptions}
+                    options={[...categories]}
                   />
                 </td>
                 <td>

@@ -2,17 +2,19 @@ import { connect } from "react-redux"
 import Modal from "../modal/Modal"
 import { deleteTask, Task } from "./taskSlice"
 
+interface DeleteTaskModalProps {
+  item: Task
+  isModalShown: boolean
+  setIsModalShown: Function
+  deleteTask: Function
+}
+
 function DeleteTaskModal({
   item,
   isModalShown,
   setIsModalShown,
   deleteTask,
-}: {
-  item: Task
-  isModalShown: boolean
-  setIsModalShown: Function
-  deleteTask: Function
-}) {
+}: DeleteTaskModalProps) {
   const onConfirm = () => {
     if (item) {
       deleteTask(item.id)
