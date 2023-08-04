@@ -1,9 +1,15 @@
+import React from "react"
 import { connect } from "react-redux"
 import { RootState } from "../../app/store"
 import { Task } from "./taskSlice"
 import Table, { EditableFields } from "../table/Table"
 import CreateTaskForm from "./CreateTaskForm"
 import Collapsible from "../collapsible/Collapsible"
+
+interface TasksProps {
+  activeTasks: Task[]
+  archivedTasks: Task[]
+}
 
 const mapStateToProps = (state: RootState) => {
   const { tasks } = state
@@ -13,20 +19,15 @@ const mapStateToProps = (state: RootState) => {
   }
 }
 
-function Tasks({
-  activeTasks,
-  archivedTasks,
-}: {
-  activeTasks: Task[]
-  archivedTasks: Task[]
-}) {
-  const taskFieldsArr = [
-    ["name", true],
-    ["createdDate"],
-    ["category", true],
-    ["content", true],
-    ["dates"],
-  ]
+const taskFieldsArr = [
+  ["name", true],
+  ["createdDate"],
+  ["category", true],
+  ["content", true],
+  ["dates"],
+]
+
+function Tasks({ activeTasks, archivedTasks }: TasksProps) {
   const taskFields: EditableFields = Object.fromEntries(taskFieldsArr)
 
   return (
