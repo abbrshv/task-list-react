@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
 import { v4 as uuidv4 } from "uuid"
+import tasksPrepared from "../../helpers/mockData"
 
 export const categories = ["task", "random thought", "idea"] as const
 
@@ -19,7 +20,7 @@ const dateRegex =
 
 export const taskSlice = createSlice({
   name: "tasks",
-  initialState: [] as Task[],
+  initialState: tasksPrepared as Task[],
   reducers: {
     createTask: {
       reducer: (state, action: PayloadAction<Task>) => {

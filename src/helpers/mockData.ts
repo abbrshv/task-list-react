@@ -1,4 +1,17 @@
 import { Task } from "../features/task/taskSlice"
+import { v4 as uuidv4 } from "uuid"
+
+const dateRegex =
+  /(0?[1-9]|[12][0-9]|3[01])(\/|-)(0?[1-9]|1[1,2])(\/|-)(19|20)\d{2}/g
+
+const prepareTask = (task: Task) => {
+  const id = uuidv4()
+  const isArchived = false
+  const datesArray = task.content.match(dateRegex)
+  const dates = datesArray ? datesArray.join(", ") : null
+
+  return { ...task, id, isArchived, dates }
+}
 
 const tasks: Task[] = [
   {
@@ -38,4 +51,6 @@ const tasks: Task[] = [
   },
 ]
 
-export default tasks
+const tasksPrepared = tasks.map((task) => prepareTask(task))
+
+export default tasksPrepared
