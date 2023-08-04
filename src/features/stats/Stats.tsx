@@ -3,12 +3,13 @@ import { RootState } from "../../app/store"
 import { categories } from "../task/taskSlice"
 import Table from "../table/Table"
 import Collapsible from "../collapsible/Collapsible"
+import { v4 as uuidv4 } from "uuid"
 
 export interface StatObject {
   categoryName: string
   archived: number
   active: number
-  id: string
+  id?: string
 }
 
 const mapStateToProps = (state: RootState) => {
@@ -27,12 +28,15 @@ const mapStateToProps = (state: RootState) => {
         (acc, cur) => acc + (cur.category === category ? 1 : 0),
         0,
       ),
-      id: "null",
     })),
   }
 }
 
 function Stats({ statObjects }: { statObjects: StatObject[] }) {
+  const statObjectsWithID = statObjects.map((statObject) => ({
+    ...statObject,
+    id: uuidv4(),
+  }))
   const fields = Object.fromEntries(
     Object.keys(statObjects[0]).map((key) => [key]),
   )
@@ -40,7 +44,7 @@ function Stats({ statObjects }: { statObjects: StatObject[] }) {
   return (
     <div className={"stats--container"}>
       <Collapsible>
-        <Table fields={fields} data={statObjects} taskButtons={false} />
+        <Table fields={fields} data={statObjectsWithID} taskButtons={false} />
       </Collapsible>
     </div>
   )
