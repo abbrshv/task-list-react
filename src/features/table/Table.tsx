@@ -17,6 +17,7 @@ export default function Table({
   data: Task[] | StatObject[]
   taskButtons: boolean
 }) {
+  if (data.length === 0) return <h3>Nothing to display yet...</h3>
   const transformCamelCase = (text: string) => {
     const result = text.replace(/([A-Z])/g, " $1")
     return result.charAt(0).toUpperCase() + result.slice(1)
