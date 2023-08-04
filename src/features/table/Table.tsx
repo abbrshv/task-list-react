@@ -1,5 +1,6 @@
 import React from "react"
 import { Task } from "../task/taskSlice"
+import { StatObject } from "../stats/Stats"
 import TableCell from "./TableCell"
 import TaskButtons from "../task/TaskButtons"
 
@@ -13,7 +14,7 @@ export default function Table({
   taskButtons,
 }: {
   fields: EditableFields
-  data: Task[]
+  data: Task[] | StatObject[]
   taskButtons: boolean
 }) {
   const transformCamelCase = (text: string) => {
