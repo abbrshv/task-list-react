@@ -19,7 +19,7 @@ const mapStateToProps = (state: RootState) => {
 
   return {
     statObjects: categories.map((category) => ({
-      categoryName: category,
+      categoryName: category[0].toUpperCase() + category.slice(1),
       archived: archivedTasks.reduce(
         (acc, cur) => acc + (cur.category === category ? 1 : 0),
         0,
