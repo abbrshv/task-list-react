@@ -15,7 +15,7 @@ export interface Task {
 }
 
 const dateRegex =
-  /(0[1-9]|[12][0-9]|3[01])(\/|-)(0[1-9]|1[1,2])(\/|-)(19|20)\d{2}/g
+  /(0?[1-9]|[12][0-9]|3[01])(\/|-)(0?[1-9]|1[1,2])(\/|-)(19|20)\d{2}/g
 
 export const taskSlice = createSlice({
   name: "tasks",
