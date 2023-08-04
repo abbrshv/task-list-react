@@ -1,6 +1,10 @@
 import React, { useState, PropsWithChildren } from "react"
 
-function Collapsible({ name, children }: PropsWithChildren<any>) {
+interface CollapsibleProps {
+  name: string
+}
+
+function Collapsible({ name, children }: PropsWithChildren<CollapsibleProps>) {
   const [hideContent, setHideContent] = useState(true)
 
   return (
