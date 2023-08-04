@@ -1,7 +1,7 @@
 import React from "react"
 import { Task } from "../task/taskSlice"
 import TableCell from "./TableCell"
-import { ConnectedComponent } from "react-redux"
+import TaskButtons from "../task/TaskButtons"
 
 export interface EditableFields {
   [fieldName: string]: boolean
@@ -10,18 +10,16 @@ export interface EditableFields {
 export default function Table({
   fields,
   data,
-  buttons,
+  taskButtons,
 }: {
   fields: EditableFields
   data: Task[]
-  buttons: ConnectedComponent<any, any>
+  taskButtons: boolean
 }) {
   const transformCamelCase = (text: string) => {
     const result = text.replace(/([A-Z])/g, " $1")
     return result.charAt(0).toUpperCase() + result.slice(1)
   }
-
-  const Buttons = buttons
 
   return (
     <table>
@@ -30,7 +28,7 @@ export default function Table({
           {Object.entries(fields).map(([fieldName, _]) => (
             <th key={`header-${fieldName}`}>{transformCamelCase(fieldName)}</th>
           ))}
-          {<Buttons></Buttons> && <th key={"header-buttons"}></th>}
+          {taskButtons && <th key={"header-buttons"}></th>}
         </tr>
       </thead>
       <tbody>
@@ -49,9 +47,11 @@ export default function Table({
                   </td>
                 ) : null
               })}
-              <td key={`buttons-${item.id}`}>
-                <Buttons item={item} />
-              </td>
+              {taskButtons && (
+                <td key={`buttons-${item.id}`}>
+                  <TaskButtons item={item} />
+                </td>
+              )}
             </tr>
           )
         })}
