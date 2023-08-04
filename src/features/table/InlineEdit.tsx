@@ -14,7 +14,7 @@ export default function InlineEdit({
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (
-      event.target instanceof HTMLInputElement &&
+      event.target instanceof HTMLTextAreaElement &&
       (event.key === "Enter" || event.key === "Escape")
     ) {
       event.target.blur()
@@ -50,7 +50,7 @@ export default function InlineEdit({
 
   return (
     <textarea
-      style={{ height: `${value.length * 1.5}px` }}
+      style={{ height: `${value.length}px` }}
       rows={1}
       value={editingValue}
       onBlur={onBlur}
