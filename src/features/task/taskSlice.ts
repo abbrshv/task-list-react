@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
 import { v4 as uuidv4 } from "uuid"
-import TaskCategories from "./TaskCategories"
+
+export const categories = ["task", "random thought", "idea"] as const
 
 export interface Task {
   name: string
-  category: TaskCategories
+  category: (typeof categories)[number]
   content: string
   createdDate?: string
   isArchived?: boolean

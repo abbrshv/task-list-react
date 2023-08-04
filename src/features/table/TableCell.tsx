@@ -1,10 +1,9 @@
 import { connect } from "react-redux"
-import { updateTask } from "../task/taskSlice"
+import { updateTask, categories } from "../task/taskSlice"
 import InlineEdit from "./InlineEdit"
 import InlineSelect from "./InlineSelect"
-import TaskCategories from "../task/TaskCategories"
 
-function TableCell({ canEdit, updateTask, fieldName, item }: any) {
+function TableCell({ isEditable, fieldName, item, updateTask }: any) {
   const inlineTaskUpdate = (value: any) => {
     const updatedData = {
       [fieldName]: value,
@@ -15,10 +14,12 @@ function TableCell({ canEdit, updateTask, fieldName, item }: any) {
   const childProps = {
     value: item[fieldName],
     setValue: inlineTaskUpdate,
-    options: Object.keys(TaskCategories),
+    options: categories.map(
+      (category) => category.charAt(0).toUpperCase() + category.slice(1),
+    ),
   }
 
-  if (!canEdit) {
+  if (!isEditable) {
     return <>{item[fieldName]}</>
   }
 
