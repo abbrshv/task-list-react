@@ -12,6 +12,10 @@ export interface StatObject {
   id?: string
 }
 
+interface StatsProps {
+  statObjects: StatObject[]
+}
+
 const mapStateToProps = (state: RootState) => {
   const { tasks } = state
   const activeTasks = tasks.filter((task) => !task.isArchived)
@@ -20,19 +24,14 @@ const mapStateToProps = (state: RootState) => {
   return {
     statObjects: categories.map((category) => ({
       categoryName: category[0].toUpperCase() + category.slice(1),
-      archived: archivedTasks.reduce(
-        (acc, cur) => acc + (cur.category === category ? 1 : 0),
-        0,
-      ),
-      active: activeTasks.reduce(
-        (acc, cur) => acc + (cur.category === category ? 1 : 0),
-        0,
-      ),
+      archived: archivedTasks.filter((task) => task.category === category)
+        .length,
+      active: activeTasks.filter((task) => task.category === category).length,
     })),
   }
 }
 
-function Stats({ statObjects }: { statObjects: StatObject[] }) {
+function Stats({ statObjects }: StatsProps) {
   const statObjectsWithID = statObjects.map((statObject) => ({
     ...statObject,
     id: uuidv4(),
