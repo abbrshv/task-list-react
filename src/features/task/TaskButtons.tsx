@@ -1,9 +1,14 @@
 import { connect } from "react-redux"
 import { updateTask } from "./taskSlice"
 import DeleteTaskModal from "./DeleteTaskModal"
-import { useState } from "react"
+import React, { useState } from "react"
 
-function TaskButtons({ item, updateTask }: any) {
+interface TaskButtonsProps {
+  item: any
+  updateTask: Function
+}
+
+function TaskButtons({ item, updateTask }: TaskButtonsProps) {
   const onArchive = () => {
     const updatedTask = { ...item, isArchived: !item.isArchived }
     updateTask(updatedTask)
