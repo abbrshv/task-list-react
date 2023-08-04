@@ -35,7 +35,7 @@ export default function InlineEdit({
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (event.target && event.target.scrollHeight > 33) {
         event.target.style.height = "5px"
-        event.target.style.height = `${event.target.scrollHeight - 10}px`
+        event.target.style.height = `${event.target.scrollHeight}px`
       }
     },
     [],
@@ -50,8 +50,8 @@ export default function InlineEdit({
 
   return (
     <textarea
+      style={{ height: `${value.length * 1.5}px` }}
       rows={1}
-      aria-label="Field name"
       value={editingValue}
       onBlur={onBlur}
       onChange={onChange}
