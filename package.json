@@ -1,6 +1,7 @@
 {
   "name": "vite-template-redux",
   "private": true,
+  "homepage": "http://abbrshv.github.io/task-list-react",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -11,7 +12,9 @@
     "test": "vitest",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
