@@ -8,15 +8,13 @@ export interface EditableFields {
   [fieldName: string]: boolean
 }
 
-export default function Table({
-  fields,
-  data,
-  taskButtons,
-}: {
+interface TableProps {
   fields: EditableFields
-  data: Task[] | StatObject[]
+  data: (Task | StatObject)[]
   taskButtons: boolean
-}) {
+}
+
+export default function Table({ fields, data, taskButtons }: TableProps) {
   if (data.length === 0) return <h3>Nothing to display yet...</h3>
   const transformCamelCase = (text: string) => {
     const result = text.replace(/([A-Z])/g, " $1")
@@ -27,7 +25,7 @@ export default function Table({
     <table>
       <thead>
         <tr>
-          {Object.entries(fields).map(([fieldName, _]) => (
+          {Object.keys(fields).map((fieldName) => (
             <th key={`header-${fieldName}`}>{transformCamelCase(fieldName)}</th>
           ))}
           {taskButtons && <th key={"header-buttons"}></th>}
